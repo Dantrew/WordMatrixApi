@@ -1,4 +1,7 @@
 
+using Microsoft.EntityFrameworkCore;
+using WordMatrixApi.Data;
+
 namespace WordMatrixApi
 {
     public class Program
@@ -13,6 +16,10 @@ namespace WordMatrixApi
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContext<WordMatrixContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("WordMatrixDatabase")));
+
 
             var app = builder.Build();
 
